@@ -12,7 +12,7 @@
     
     
     
-    <title>第一篇篇文章 | Mr xiong&#39;s blog</title>
+    <title>tags: 总结 | Mr xiong&#39;s blog</title>
     <link href=”http://yoursite.com“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -134,10 +134,22 @@
                 
                 
                 
-                <li class="">
-                    <a href="/tags">
+                <li class="dropdown">
+                    <!-- TODO 添加hover dropdown效果 -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" data-hover="dropdown">
                         <i class="fa fa-tags"></i>标签
                     </a>
+                    <ul class="dropdown-menu">
+                        
+                        
+                        <li>
+                            <a href="/tags/总结/">总结</a>
+                        </li>
+                        
+                        
+                        
+                    </ul>
                 </li>
                 
                 
@@ -158,27 +170,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    
-<article class="article well article-body" id="article">
+                    <article class="article well article-body" id="article-tag">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="http://yoursite.com">Mr xiong&#39;s blog</a>
         >
-        <span>第一篇篇文章</span>
+        <span>标签</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2018/09/13/第一篇篇文章/">第一篇篇文章</a>
+                <a href="/tags/总结/index.html">总结</a>
             </h1>
-        </div>
-        <div class="tag-article">
-            
-            <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2018-09-13
-            </span>
-            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -186,67 +190,21 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2018/09/13/第一篇篇文章/">第一篇篇文章</a>
+                    <a href="/tags/总结/index.html">总结</a>
                 </h4>
             </div>
-            <p>
-                <i class="fa fa-calendar"></i> 2018-09-13
-            </p>
-            <p>
-                
-                
-            </p>
         </center>
     </div>
-    <div class="content-article">
-        <p>比赛链接：传送门<br>链接：<a href="https://www.nowcoder.com/acm/contest/180/A" target="_blank" rel="noopener">https://www.nowcoder.com/acm/contest/180/A</a><br>A</p>
-<p>题目描述<br>小a的平面上有n个X型不明物体，但是他不确定他们的位置。现在请你来确定他们的位置，使得划分形成的平面尽量多<br>输入描述:<br>一个整数n，如题所示<br>输出描述:<br>一个整数，表示最多把平面分成多少份<br>示例1<br>输入</p>
-<p>2<br>输出</p>
-<p>11</p>
-<p>平面分割问题，直线划分平面，有个公式就是<br>Cn 0+Cn 1+Cn 2<br>推导大致是这样的：详见传送门<br>当有n-1条直线时，平面最多被分成了f（n-1）个区域。则第n条直线要是切成的区域数最多，就必须与每条直线相交且不能有同一交点。这样就会得到n-1个交点。这些交点将第n条直线分为2条射线和n-2条线断。而每条射线和线断将以有的区域一分为二。这样就多出了2+（n-2）个区域。<br>f(n)=f(n-1)+n<br>=f(n-2)+(n-1)+n<br>=……<br>=f(1)+1+2+……+n<br>=n(n+1)/2+1</p>
-<p>#include&lt;stdio.h&gt;<br>int main()<br>{<br>   long long n,L1;<br>   scanf(“%lld”,&amp;n);<br>    n=n<em>2;<br>       L1=(n</em>n+n+2)/2;      //直线划分平面 </p>
-<pre><code>printf(&quot;%lld\n&quot;,L1);
-</code></pre><p>   return 0;<br>}<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>链接：<a href="https://www.nowcoder.com/acm/contest/180/B" target="_blank" rel="noopener">https://www.nowcoder.com/acm/contest/180/B</a></p>
-<p>B<br>题目描述<br>小a有个烟花，每个烟花代表着互不相同的颜色，对于第个烟花，它有的概率点燃，现在小a要去点燃它们，他想知道产生颜色的期望个数 及 产生恰好产生种颜色的概率</p>
-<p>输入描述:<br>第一行两个整数<br>接下来一行个数，第个数表示第个烟花被点燃的概率<br>输出描述:<br>输出有两行<br>第一行表示产生不同颜色的期望个数<br>第二行表示产生恰好种颜色的概率<br>以换行符分割</p>
-<p>每种颜色的个数是1，因为期望的线性性质<br>，所以积分 ans就等于xi*pi的积分了，等于概率之和<br>第二问，dp[i][j]表示当前有i个烟花恰好有j个烟花被点燃。</p>
-<p>#include<cstdio></cstdio></p>
-<p>#include<algorithm><br>using namespace std;<br>double p[1000005],dp[100005][105];<br>int main(){<br>    int n,k;<br>    scanf(“%d%d”,&amp;n,&amp;k);<br>    double ans=0;<br>    for (int i=1; i&lt;=n; i++){<br>        scanf(“%lf”,&amp;p[i]);<br>        ans+=p[i];<br>    }<br>    printf(“%0.4lf\n”,ans);<br>    dp[0][0]=1;<br>    for (int i=1; i&lt;=n; i++){</algorithm></p>
-<pre><code>    for (int j=0; j&lt;=min(i,k); j++){
-        dp[i][j+1]+=dp[i-1][j]*p[i];
-
-        dp[i][j]+=dp[i-1][j]*((double)1-p[i]);
-
-    }
-} 
-printf(&quot;%0.4lf\n&quot;,dp[n][k]);
-</code></pre><p>}<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>如果题目卡空间的话，就需要用到滚动数组优化，放标程了</p>
-<p>#include<cstdio></cstdio></p>
-<p>#include<algorithm><br>using namespace std;<br>const int MAXN = 100001;<br>int N, K;<br>double p[MAXN], f[2][MAXN];<br>int main() {<br>    scanf(“%d %d”, &amp;N, &amp;K);<br>    double sum = 0;<br>    for(int i = 1; i &lt;= N; i++) scanf(“%lf”, &amp;p[i]), sum += p[i];<br>    printf(“%.4lf\n”, sum);<br>    int o = 0;<br>    f[o][1] = p[1]; f[o][0] = 1 - p[1];<br>    for(int i = 2; i &lt;= N; i++) {<br>        o ^= 1;<br>        for(int j = 0; j &lt;= min(i, K); j++)<br>            f[o][j] = f[o ^ 1][j - 1] <em> p[i] + f[o ^ 1][j] </em> (1 - p[i]);<br>    }<br>    printf(“%.4lf”, f[o][K]);<br>    return 0;<br>}<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>链接：<a href="https://www.nowcoder.com/acm/contest/180/C" target="_blank" rel="noopener">https://www.nowcoder.com/acm/contest/180/C</a><br>C</algorithm></p>
-<p>题目描述<br>小a的国家里有n个城市，其中第i和第i - 1个城市之间有无向道路连接，特殊的，第1个城市仅与第2个城市相连<br>为了减轻道路维护负担，城市规划局局长MXT给出了m个要求，他想让小a断开一些道路，使得任意1 ≤ i ≤ m ，城市xi不能到达城市yi<br>同时最小化断开道路的数量。</p>
-<p>输入描述:<br>第一行两个整数n, m，分别表示城市的数量和请求的数量<br>接下来m行，每行两个整数x,y，表示需要使得x不能到达y<br>输出描述:<br>输出一个整数，表示最小断开桥的数量<br>示例1<br>输入</p>
-<p>4 2<br>1 3<br>2 4<br>输出</p>
-<p>1<br>说明<br>可以断开(2, 3)城市之间的道路</p>
-<p>不知道为啥比赛的时候就是看不出来，难道是心太急了，我竟然想到了最小割，看这时间复杂度怎么可能，<br>然后竟然是贪心的做法<br>直接上题解了，开学了，人也变得懒起来了<br>考虑一个很显然的 O(mlog(m))的做法 首先对所有线段按照右端点排序，然后每次在右端点处切 但是m达到了 10^7级别，所以不能通过此题</p>
-<p>由于题目保证所有线段的值域为1-n ，我们可以对所有左端点，直接记录出右端点最靠左的 位置 同样每次切右端点，扫一遍即可 时间复杂度: O(m)</p>
-<p>#include<cstdio><br>const int MAXN = 1e6 + 10;</cstdio></p>
-<p>#define getchar() (p1 == p2 &amp;&amp; (p2 = (p1 = buf) + fread(buf, 1, 1&lt;&lt;22, stdin), p1 == p2) ? EOF : *p1++)</p>
-<p>#define min(a, b) (a &lt; b ? a : b)<br>char buf[(1 &lt;&lt; 22)], <em>p1 = buf, </em>p2 = buf;<br>inline int read() {<br>    char c = getchar(); int x = 0, f = 1;<br>    while(c &lt; ‘0’ || c &gt; ‘9’) {if(c == ‘-‘) f = -1; c = getchar();}<br>    while(c &gt;= ‘0’ &amp;&amp; c &lt;= ‘9’) x = x <em> 10 + c - ‘0’, c = getchar();<br>    return x </em> f;<br>}<br>int N, M;<br>int r[MAXN];<br>int main() {<br>    N = read(); M = read();<br>    for(int i = 1; i &lt;= N; i++) r[i] = N + 1;<br>    for(int i = 1; i &lt;= M; i++) {<br>        int x = read(), y = read();<br>        r[x] = min(y, r[x]);<br>    }<br>    int cur = N + 1, ans = 0;<br>    for(int i = 1; i &lt;= N; i++) {<br>        cur = min(cur, r[i]);<br>        if(i == cur) cur = r[i], ans++;<br>    }<br>    printf(“%d”, ans);<br>    return 0;<br>}<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>链接：<a href="https://www.nowcoder.com/acm/contest/180/D" target="_blank" rel="noopener">https://www.nowcoder.com/acm/contest/180/D</a><br>D</p>
-<p>题目描述<br>小a有n个数，他提出了一个很有意思的问题：他想知道对于任意的x, y，能否将x与这n个数中的任意多个数异或任意多次后变为y</p>
-<p>输入描述:<br>第一行为一个整数n，表示元素个数<br>第二行一行包含n个整数，分别代表序列中的元素<br>第三行为一个整数Q，表示询问次数<br>接下来Q行，每行两个数x,y，含义如题所示<br>输出描述:<br>输出Q行，若x可以变换为y，输出“YES”，否则输出“NO”<br>示例1<br>输入</p>
-<p>5<br>1 2 3 4 5<br>3<br>6 7<br>2 1<br>3 8<br>输出</p>
-<p>YES<br>YES<br>NO</p>
-<p>该题首先会发现异或有一个性质就是 x^y=z,然后 x^z=y;<br>然后该题就只要找出这个集合能不能异或出y就ok了<br>那么就是线性基经典操作了 额，以前听别人说起过，但是一直没学，伤心<br>上个标程记录一下</p>
-<p>#include<cstdio></cstdio></p>
-<p>#include<cstring></cstring></p>
-<p>#include<algorithm><br>using namespace std;<br>const int MAXN = 32, B = 31;<br>inline int read() {<br>    char c = getchar(); int x = 0, f = 1;<br>    while(c &lt; ‘0’ || c &gt; ‘9’) {if(c == ‘-‘) f = -1; c = getchar();}<br>    while(c &gt;= ‘0’ &amp;&amp; c &lt;= ‘9’) x = x <em> 10 + c - ‘0’, c = getchar();<br>    return x </em> f;<br>}<br>int N;<br>int P[MAXN];<br>void Insert(int x) {<br>    for(int i = B; i &gt;= 0; i–) {<br>        if((x &gt;&gt; i) &amp; 1) {<br>            if(!P[i]) {P[i] = x; break;}<br>            x ^= P[i];<br>        }<br>    }<br>}</algorithm></p>
-<p>int Query(int x) {<br>    for(int i = B; i &gt;= 0; i–) {<br>        if((x &gt;&gt; i) &amp; 1) {<br>            if(!P[i]) return 0;<br>            x ^= P[i];<br>        }<br>    }<br>    if(x == 0) return 1;<br>    else return 0;<br>}</p>
-<p>int main(){<br>    N = read();<br>    for(int i = 1; i &lt;= N; i++) {<br>        int val = read(); Insert(val);<br>    }<br>    int Q = read();<br>    while(Q–) {<br>        int x = read(), y = read();<br>        if(Query(x ^ y)) puts(“YES”);<br>        else puts(“NO”);<br>    }<br>}<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>其他的题目日后再记录呜呜呜</p>
-
+    <div class="content-article" style="margin-top: 30px;">
+        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
+            
+            <a href="/2018/09/14/2018湖南省赛总结/">2018湖南省赛总结</a>
+            <br>
+            
+            
+        </div>
     </div>
 </article>
-
-
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -304,7 +262,7 @@ printf(&quot;%0.4lf\n&quot;,dp[n][k]);
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2018/09/13/第一篇篇文章/">第一篇篇文章</a>
+                    <a href="/2018/09/14/2018湖南省赛总结/">2018湖南省赛总结</a>
                 </span>
             </li>
             
@@ -338,7 +296,7 @@ printf(&quot;%0.4lf\n&quot;,dp[n][k]);
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2018/09/13/第一篇篇文章/">第一篇篇文章</a>
+                    <a href="/2018/09/14/2018湖南省赛总结/">2018湖南省赛总结</a>
                 </span>
             </li>
             
@@ -363,23 +321,29 @@ printf(&quot;%0.4lf\n&quot;,dp[n][k]);
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/2018/09/13/第一篇篇文章/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/tags/总结/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/2018/09/13/第一篇篇文章/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/tags/总结/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/2018/09/13/第一篇篇文章/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/tags/总结/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
+    
+    <a href="/tags/总结/" style="font-size: 15.972434368161139px;" class="tag-cloud-link">总结</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
     
     <li>
         <a href="https://durong.me" target="_blank">durong</a>
+    </li>
+    
+    <li>
+        <a href="https://blog.csdn.net/qq_37960603" target="_blank">kaven</a>
     </li>
     
 </div>
